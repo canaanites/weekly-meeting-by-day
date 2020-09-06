@@ -63,8 +63,8 @@ const selectMeetingDate = ({
   }
 
   if (
-    numberOfTheDay == today.getDay() &&
-    hour == today.getHours() &&
+    numberOfTheDay === today.getDay() &&
+    hour === today.getHours() &&
     minute > today.getMinutes()
   ) {
     return getMessage(
