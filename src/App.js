@@ -3,42 +3,67 @@ import logo from "./logo.svg";
 import "./App.css";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
+import { selectMeetingDate, getMeetingByTime } from "./lib/index.js"
 
 function App() {
   const dayOptions = [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ]; 
   const hourOptions = Array.from(Array(12), (_, i) => `${i + 1}:00`)
   const minuteOptions = Array.from(Array(59), (_, i) => `00:${i + 1}`)
 
+  const defaultValues = {day: "Sunday", hour: "1:00", minute: "00:00", AmPm: "AM", timezone: -1 * (new Date().getTimezoneOffset()/60)}
 
-  const [time, setTime] = useState();
+  const [time, setTime] = useState(defaultValues);
 
   const _onSelect = (date, key) => {
-    return setTime({[key]: date.value});
+    return setTime({...time, [key]: date.value});
+  }
+
+  const _onSubmit = () => {
+    const selectedTime = selectMeetingDate({ day: time.day, hour: time.hour, minute: time.minute, timezone: time.timezone});
+    console.log(selectedTime);
+    window.location.href = selectedTime.link;
   }
 
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        
-        <Dropdown
-          options={dayOptions}
-          onChange={_onSelect}
-          value={dayOptions[0]}
-          placeholder="Select Day"
-        />
-        <Dropdown
-          options={hourOptions}
-          onChange={_onSelect}
-          value={"1:00"}
-          placeholder="Select Hour"
-        />
-        <Dropdown
-          options={minuteOptions}
-          onChange={_onSelect}
-          value={"00:00"}
-          placeholder="Select Minute"
-        />
+        <img src={logo} className="App-logo" alt="logo" /> 
+
+        {
+        window.location.href.indexOf('?time=') > -1 
+          ? <div>{getMeetingByTime(window.location.href.split('?time=')[0]).message}</div>
+          : <wrapper>
+              <div>Select a day</div>
+              <Dropdown
+                options={dayOptions}
+                onChange={(data) => _onSelect(data, 'day')}
+                value={dayOptions[0]}
+                placeholder="Select a Day"
+              />
+              <div>Select a Hour</div>
+              <Dropdown
+                options={hourOptions}
+                onChange={(data) => _onSelect(data, 'hour')}
+                value={"1:00"}
+                placeholder="Select an Hour"
+              />
+              <div>Select a AM/PM</div>
+              <Dropdown
+                options={['AM', 'PM']}
+                onChange={(data) => _onSelect(data, 'AmPm')}
+                value={"AM"}
+                placeholder="Select an Hour"
+              />
+              <div>Select a Minute</div>
+              <Dropdown
+                options={minuteOptions}
+                onChange={(data) => _onSelect(data, 'minute')}
+                value={"00:00"}
+                placeholder="Select a Minute"
+              />
+              <div id="submit-btn" onClick={_onSubmit}> submit </div>
+            </wrapper>
+        }
       </header>
     </div>
   );

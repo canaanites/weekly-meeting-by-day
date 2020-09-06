@@ -1,4 +1,4 @@
-let selectMeetingDate = ({
+const selectMeetingDate = ({
   day = "Sunday",
   hour = 0,
   minute = 0,
@@ -86,4 +86,4 @@ const getMeetingByTime = (time) => {
     return selectMeetingDate({ day: "Monday", hour: 14, minute: 30 });
 }
 
-export default { selectMeetingDate, getMeetingByTime };
+export { selectMeetingDate, getMeetingByTime };
