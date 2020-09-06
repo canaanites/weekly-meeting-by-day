@@ -20,12 +20,6 @@ function App() {
   const _onGoBack = () => window.location.href = "/";
 
   const _onSubmit = () => {
-    console.log({
-      day: time.day, 
-      hour: Number(time.hour.split(":")[0]) || 1, 
-      minute: Number(time.minute.split(":")[1]) || 0, 
-      timezone: time.timezone
-    });
     const selectedTime = selectMeetingDate({ 
       day: time.day, 
       hour: Number(time.hour.split(":")[0]) || 1, 
@@ -54,14 +48,14 @@ function App() {
                 value={dayOptions[0]}
                 placeholder="Select a Day"
               />
-              <div>Select a Hour</div>
+              <div>Select an Hour</div>
               <Dropdown
                 options={hourOptions}
                 onChange={(data) => _onSelect(data, 'hour')}
                 value={"1:00"}
                 placeholder="Select an Hour"
               />
-              <div>Select a AM/PM</div>
+              <div>Select AM/PM</div>
               <Dropdown
                 options={['AM', 'PM']}
                 onChange={(data) => _onSelect(data, 'AmPm')}
