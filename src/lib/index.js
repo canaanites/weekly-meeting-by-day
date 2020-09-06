@@ -83,6 +83,7 @@ const selectMeetingDate = ({
 
 const getMeetingByTime = (time) => {
     const selectedTime = new Date(time);
+    console.log({ day: selectedTime.getDay(), hour: selectedTime.getHours(), minute: selectedTime.getMinutes() })
     return selectMeetingDate({ day: selectedTime.getDay(), hour: selectedTime.getHours(), minute: selectedTime.getMinutes() });
 }
 

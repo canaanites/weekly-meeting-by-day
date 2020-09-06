@@ -44,7 +44,7 @@ function App() {
         {
         window.location.href.indexOf('?time=') > -1 
           ? <wrapper> 
-              <div>{getMeetingByTime(window.location.href.split('?time=')[0]).message}</div>
+              <div>{getMeetingByTime(Number(window.location.href.split('?time=')[1])).message}</div>
               <div id="back-btn" onClick={_onGoBack}> Go back </div>
             </wrapper>
           : <wrapper>
