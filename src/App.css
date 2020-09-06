@@ -38,15 +38,16 @@
 }
 
 
-#submit-btn {
+#submit-btn, #back-btn {
   color: #fff;
   background-color: rgb(76, 115, 221);
   padding: 10px;
   margin-top: 15px;
+  max-width: 200px;
 }
 
 
-#submit-btn:hover {
+#submit-btn:hover, #back-btn:hover {
   background-color: rgb(38, 60, 121);
   cursor: pointer;
 }

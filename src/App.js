@@ -17,6 +17,7 @@ function App() {
   const _onSelect = (date, key) => {
     return setTime({...time, [key]: date.value});
   }
+  const _onGoBack = () => window.location.href = "/";
 
   const _onSubmit = () => {
     console.log({
@@ -42,7 +43,10 @@ function App() {
 
         {
         window.location.href.indexOf('?time=') > -1 
-          ? <div>{getMeetingByTime(window.location.href.split('?time=')[0]).message}</div>
+          ? <wrapper> 
+              <div>{getMeetingByTime(window.location.href.split('?time=')[0]).message}</div>
+              <div id="back-btn" onClick={_onGoBack}> Go back </div>
+            </wrapper>
           : <wrapper>
               <div>Select a day</div>
               <Dropdown
