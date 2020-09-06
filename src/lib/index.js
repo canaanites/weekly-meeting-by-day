@@ -82,8 +82,8 @@ const selectMeetingDate = ({
 
 
 const getMeetingByTime = (time) => {
-    const today = new Date(time);
-    return selectMeetingDate({ day: "Monday", hour: 14, minute: 30 });
+    const selectedTime = new Date(time);
+    return selectMeetingDate({ day: selectedTime.getDay(), hour: selectedTime.getHours(), minute: selectedTime.getMinutes() });
 }
 
 export { selectMeetingDate, getMeetingByTime };
