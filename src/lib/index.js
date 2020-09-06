@@ -2,7 +2,7 @@ const selectMeetingDate = ({
   day = "Sunday",
   hour = 0,
   minute = 0,
-  timezone = -1 * (new Date().getTimezoneOffset()/60), // try to avoid changing this value, but if you do stick to one timezone (ex. -5)
+  timezone = -1 * (new Date().getTimezoneOffset()/60) // try to avoid changing this value, but if you do stick to one timezone (ex. -5)
 }) => {
   const dayToInt = {
     sunday: 0,
@@ -24,7 +24,7 @@ const selectMeetingDate = ({
     6: "Saturday",
   };
 
-  const numberOfTheDay = dayToInt[day.toLowerCase()] || 0;
+  const numberOfTheDay = dayToInt[`${day}`.toLowerCase()] || 0;
 
   const today = new Date();
 

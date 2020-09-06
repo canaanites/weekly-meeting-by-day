@@ -19,7 +19,18 @@ function App() {
   }
 
   const _onSubmit = () => {
-    const selectedTime = selectMeetingDate({ day: time.day, hour: time.hour, minute: time.minute, timezone: time.timezone});
+    console.log({
+      day: time.day, 
+      hour: Number(time.hour.split(":")[0]) || 1, 
+      minute: Number(time.minute.split(":")[1]) || 0, 
+      timezone: time.timezone
+    });
+    const selectedTime = selectMeetingDate({ 
+      day: time.day, 
+      hour: Number(time.hour.split(":")[0]) || 1, 
+      minute: Number(time.minute.split(":")[1]) || 0, 
+      timezone: time.timezone
+    });
     console.log(selectedTime);
     window.location.href = selectedTime.link;
   }
