@@ -41,8 +41,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" /> 
 
-        {
-        window.location.href.indexOf('?time=') > -1 
+        {window.location.href.indexOf('?time=') > -1 
           ? <wrapper> 
               <div>{getMeetingByTime(Number(window.location.href.split('?time=')[1])).message}</div>
               <div id="back-btn" onClick={_onGoBack}> Go back </div>
